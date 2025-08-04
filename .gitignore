@@ -1,6 +1,6 @@
 # uploaded folder
-**/uploads/docs/*
-**/uploads/images/*
+/src/uploads/docs/*
+/src/uploads/images/*
 
 # compiled output
 /dist
