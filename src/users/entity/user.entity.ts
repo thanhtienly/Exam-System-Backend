@@ -1,4 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Course } from 'src/courses/entity/course.entity';
+import { Enrollment } from 'src/courses/entity/enrollment.entity';
+import { Submission } from 'src/courses/entity/submission.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -6,9 +15,10 @@ export enum UserRole {
   STUDENT = 'student',
 }
 
-@Entity()
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn()
   id: string;
 
   @Column({

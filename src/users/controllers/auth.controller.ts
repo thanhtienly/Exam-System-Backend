@@ -1,5 +1,5 @@
 import { Body, Controller, Post, Query, Res } from '@nestjs/common';
-import { UserService } from './user.service';
+import { UserService } from '../services/user.service';
 import {
   ChangePasswordDTO,
   ForgotPasswordDTO,
@@ -10,14 +10,14 @@ import {
   SignUpDTO,
   ValidateOtpDTO,
   VerifyAccountPayload,
-} from './dto/user.dto';
+} from '../dto/user.dto';
 import { Response } from 'express';
 import * as bcrypt from 'bcrypt';
-import { CypherService } from './cypher.service';
+import { CypherService } from '../services/cypher.service';
 import { ConfigService } from '@nestjs/config';
 import { ProducerService } from 'src/rabbitmq/producer.service';
 import { JwtService } from '@nestjs/jwt';
-import { RedisService } from './redis.service';
+import { RedisService } from '../services/redis.service';
 import * as speakeasy from 'speakeasy';
 
 @Controller('auth')
@@ -139,7 +139,8 @@ export class AuthController {
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
-      role: user.role,
+      roles: [user.role],
+      userId: user.id,
     };
 
     var accessToken = this.jwtService.sign(payload);

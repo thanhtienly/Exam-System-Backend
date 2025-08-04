@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { AuthController } from './auth.controller';
-import { CypherService } from './cypher.service';
+import { UserService } from './services/user.service';
+import { AuthController } from './controllers/auth.controller';
+import { CypherService } from './services/cypher.service';
 import { ProducerService } from 'src/rabbitmq/producer.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConsumerController } from 'src/rabbitmq/consumer.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
-import { RedisService } from './redis.service';
+import { RedisService } from './services/redis.service';
 
 @Module({
   imports: [
